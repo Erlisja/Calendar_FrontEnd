@@ -10,7 +10,7 @@ import "./App.css";
 import Nav from "./Components/Nav";
 
 function App() {
-  const [user, setUser] = useState("any user");
+  const [user, setUser] = useState("");
 
   return (
     <>

@@ -1,8 +1,34 @@
-import React from 'react'
+import { useState } from "react"
+import SignUpForm from "../Components/SignUpForm"
+import LoginForm from "../Components/LoginForm"
 
 function AuthPage() {
+
+  const [signup,setSignup] = useState(true) 
+
+  function togglePage() {
+    setSignup(!signup);
+
+  }
+
+
+
+
   return (
-    <div>AuthPage</div>
+    <>
+    <h1>Sign Up or  Log In</h1>
+    <>
+    {signup 
+    ?
+  <SignUpForm />
+  :
+  <LoginForm />
+    }
+    </>
+    <h2>Or go here to {signup ? 'Log In' : 'Register'} </h2>
+    <button onClick={togglePage}>{signup ? 'Log In' : 'Register'}</button>
+    </>
+
   )
 }
 
