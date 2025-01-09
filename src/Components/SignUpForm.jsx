@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function SignUpForm() {
+import { signup } from "../utilities/users-services";
+
+function SignUpForm(props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,10 +17,21 @@ function SignUpForm() {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     // this is where we will add to our database
+    //but through utilities/user-services
+    try{
+        // set this up to be able to add a new user'
+        const submitData = {... formData} 
+        delete formData.confirm;
+        console.log(submitData);
+        const user = await signup(submitData);
+        props.setUser(user);
+
+    }catch(err){
+      setError('sign up failed')
+    }
   };
 
   return (
@@ -55,7 +68,20 @@ function SignUpForm() {
             placeholder="password"
             required
             />
+            <br />
+            <label>Confirm Password </label>
+            <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            placeholder="confirm password"
+            required
+            />
+            <br />
+            <button type="submit" disabled={formData.password !== formData.confirmPassword}>Sign Up</button>
         </form>
+        <p>{error}</p>
       </div>
     </>
   );

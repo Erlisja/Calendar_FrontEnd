@@ -2,7 +2,7 @@ import { useState } from "react"
 import SignUpForm from "../Components/SignUpForm"
 import LoginForm from "../Components/LoginForm"
 
-function AuthPage() {
+function AuthPage(props) {
 
   const [signup,setSignup] = useState(true) 
 
@@ -20,9 +20,9 @@ function AuthPage() {
     <>
     {signup 
     ?
-  <SignUpForm />
+  <SignUpForm setUser={props.setUser} />
   :
-  <LoginForm />
+  <LoginForm setUser={props.setUser} />
     }
     </>
     <h2>Or go here to {signup ? 'Log In' : 'Register'} </h2>

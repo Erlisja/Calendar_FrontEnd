@@ -17,7 +17,7 @@ function App() {
       {user ? (
         <>
         <Nav />
-          <div>hi {user}</div>
+          <div>hi {user.name}</div>
 
           <h1>Calendar App</h1>
           <Routes>
@@ -28,7 +28,7 @@ function App() {
           </Routes>
         </>
       ) : (
-        <AuthPage />
+        <AuthPage setUser={setUser} />
       )}
     </>
   );
