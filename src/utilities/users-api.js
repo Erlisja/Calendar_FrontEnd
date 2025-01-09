@@ -18,11 +18,26 @@ export async function signup(userData) {
     })
     // check if the request was successful
     if (res.ok) {
-        // eventuall, res.json will return a token
+        // eventually, res.json will return a token
         return res.json();
     }else{
         // if the request failed, an error message will be returned
         throw new Error('Invalid Sign Up');
     }
     
+}
+
+export async function login(credentials) {
+    const res = await fetch (URL + '/login',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+    })
+    // check if the request was successful
+    if (res.ok){
+        //this will resolve to the JWT
+        return res.json();
+    }else{
+        throw new Error('Invalid Login');
+    }
 }

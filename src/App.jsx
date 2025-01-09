@@ -5,12 +5,14 @@ import CalendarPage from "./Pages/CalendarPage";
 import BrainDumpPage from "./Pages/BrainDumpPage";
 import TodosPage from "./Pages/TodosPage";
 import AuthPage from "./Pages/AuthPage";
+import {getUser} from "./utilities/users-services"
+
 
 import "./App.css";
 import Nav from "./Components/Nav";
 
 function App() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(getUser());
 
   return (
     <>
